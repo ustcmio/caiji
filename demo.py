@@ -67,7 +67,7 @@ def loaddownExcel(s, pids, filename):
     body_excel['linage'] = body_excel['district']
     body_excel['needProgressBar'] = 'ture'
 
-    url_excel = 'http://10.75.125.115:7002/wxsh/Report-ExcelAction.do'
+    url_excel = 'http://10.75.125.115:7002/wxsh/Report-PdfAction.do'
     # s.headers = {
     #     'Host': '10.75.125.115:7002',
     # 'Connection': 'keep - alive',
@@ -109,7 +109,7 @@ workbook = xlrd.open_workbook(filename)
 sheet = workbook.sheet_by_index(0)
 begin = 0
 members = []
-for index in range(sheet.nrows//20 + 1):
+for index in range(1): # (sheet.nrows//20 + 1):
     begin = index *20
     end = begin +20
     if end > sheet.nrows:
@@ -118,4 +118,4 @@ for index in range(sheet.nrows//20 + 1):
     for i in range(begin,end):
         members.append(sheet.row_values(i)[2])
     print(begin,'~',end)
-    loaddownExcel(s,members,str(begin)+'~'+str(end)+'.xls')
+    loaddownExcel(s,members,str(begin)+'~'+str(end)+'.pdf')
