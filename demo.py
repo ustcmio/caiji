@@ -109,7 +109,7 @@ workbook = xlrd.open_workbook(filename)
 sheet = workbook.sheet_by_index(0)
 begin = 0
 members = []
-for index in range(1): # (sheet.nrows//20 + 1):
+for index in range(6,sheet.nrows//20 + 1):
     begin = index *20
     end = begin +20
     if end > sheet.nrows:
@@ -118,4 +118,4 @@ for index in range(1): # (sheet.nrows//20 + 1):
     for i in range(begin,end):
         members.append(sheet.row_values(i)[2])
     print(begin,'~',end)
-    loaddownExcel(s,members,str(begin)+'~'+str(end)+'.pdf')
+    loaddownExcel(s,members,str(begin+1)+'~'+str(end)+'.pdf')
